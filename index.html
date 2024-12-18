@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photo qui bouge avec le curseur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,7 +19,7 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            font-family: Arial, sans-serif;
+            font-family: 'Oswald', sans-serif;
         }
 
         .image-container {
@@ -37,6 +38,21 @@
             left: 50%;
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease-out;
+        }
+
+        ul {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            list-style: none;
+            text-align: center;
+        }
+
+        ul li {
+            font-size: 24px;
+            color: #fff;
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -63,5 +79,14 @@
             image.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
         });
     </script>
+
+    <!-- Mots qui correspondent à l'utilisateur -->
+    <ul>
+        <li>Autonome</li>
+        <li>Créatif</li>
+        <li>Technique</li>
+        <li>Curieux</li>
+        <li>Organisé</li>
+    </ul>
 </body>
 </html>
