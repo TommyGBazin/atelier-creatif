@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo qui bouge avec le curseur</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .image-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .image-container img {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="https://media.licdn.com/dms/image/v2/D4E03AQH_TwLj5xo_0g/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1699132982336?e=1740009600&v=beta&t=kqdD7CM1EY3VsIGMalWjTHn1koJNj8jvTy3xb6Zzcmk" alt="Photo au centre">
+    </div>
+
+    <script>
+        const image = document.querySelector('.image-container img');
+
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+
+            // Calculer la position du curseur par rapport au centre de l'écran
+            const xPercent = (clientX / innerWidth - 0.5) * 2; // de -1 à 1
+            const yPercent = (clientY / innerHeight - 0.5) * 2; // de -1 à 1
+
+            // Appliquer la translation sur l'image
+            const moveX = xPercent * 20; // Ajuster la sensibilité à 20px
+            const moveY = yPercent * 20;
+
+            image.style.transform = `translate(calc(-50% + ${moveX}px), calc(-50% + ${moveY}px))`;
+        });
+    </script>
+</body>
+</html>
